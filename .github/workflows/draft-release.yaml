@@ -1,0 +1,54 @@
+name: Create Draft Release
+on: [workflow_dispatch]
+jobs:
+  everything:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - uses: actions/checkout@v4
+
+      # Install node and NPM
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "19"
+
+      # Install required packages
+      - run: npm install
+
+      - name: Reading the module.json for the version
+        id: "version"
+        run: cat module.json | echo version=`jq -r ".version"` >> "$GITHUB_OUTPUT"
+
+      # Check that tag doesn't exist
+      - uses: mukunku/tag-exists-action@v1.5.0
+        id: check-tag
+        with:
+          tag: "v${{ steps.version.outputs.version }}"
+
+      - name: "Ensure that the tag doesn't exist"
+        if: ${{ steps.check-tag.outputs.exists == 'true' }}
+        run: exit 1
+
+      - name: Ensure there are specific files to release
+        if: ${{ vars.files_to_release == '' }}
+        run: exit 1
+
+      - name: Move module.json to a temp file
+        id: manifest-move
+        run: mv module.json module.temp.json
+
+      - name: Update the download property in the manifest
+        id: manifest-update
+        run: cat module.temp.json | jq -r --tab '.download = "https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version }}/${{ vars.zip_name }}.zip"' > module.json
+
+      - name: Create the zip
+        run: zip -r ${{ vars.zip_name || 'release' }}.zip ${{ vars.files_to_release }}
+
+      - name: Create the draft release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "v${{ steps.version.outputs.version }}"
+          commit: ${{ github.ref }}
+          draft: true
+          generateReleaseNotes: true
+          artifacts: "${{vars.zip_name || 'release'}}.zip,module.json"
