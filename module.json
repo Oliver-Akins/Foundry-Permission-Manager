@@ -1,0 +1,32 @@
+{
+	"id": "permission-manager",
+	"title": "Permission Manager",
+	"description": "A module that provides a way for custom permissions similar to Foundry's default permission system.",
+	"version": "1.0.0",
+	"compatibility": {
+		"minimum": 12,
+		"verified": 12,
+		"maximum": 12
+	},
+	"authors": [
+		{
+			"name": "Oliver Akins",
+			"url": "https://oliver.akins.me"
+		}
+	],
+	"esmodules": [
+		"src/main.mjs"
+	],
+	"languages": [
+		{
+			"lang": "en",
+			"name": "English (Canadian)",
+			"path": "langs/en-ca.json"
+		}
+	],
+	"url": "",
+	"manifest": "",
+	"download": "",
+	"readme": "README.md",
+	"bugs": ""
+}
