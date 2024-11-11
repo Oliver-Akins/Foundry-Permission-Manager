@@ -3,6 +3,7 @@ import { PermissionModel } from "../data/PermissionModel.mjs";
 const fields = foundry.data.fields;
 
 export class PermissionManager {
+	/** @type {Map<string, CustomPermission>} */
 	static #validPermissions = new Map();
 	static #permissionCache = new Map();
 
@@ -125,9 +126,8 @@ export class PermissionManager {
 		const perms = [];
 		for (const [ permission, data ] of this.#validPermissions.entries()) {
 			perms.push({
+				...data,
 				key: permission,
-				name: game.i18n.localize(data.name ?? permission),
-				hint: game.i18n.localize(data.hint),
 				roles: this.#getRoles(permission),
 			});
 		};

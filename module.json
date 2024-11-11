@@ -17,6 +17,9 @@
 	"esmodules": [
 		"src/main.mjs"
 	],
+	"styles": [
+		"styles/_index.css"
+	],
 	"languages": [
 		{
 			"lang": "en",
@@ -28,5 +31,12 @@
 	"manifest": "",
 	"download": "",
 	"readme": "README.md",
-	"bugs": ""
+	"bugs": "",
+	"library": true,
+	"flags": {
+		"hotReload": {
+			"extensions": ["css", "hbs", "json", "js", "mjs", "svg"],
+			"paths": ["templates", "langs", "styles", "src", "assets"]
+		}
+	}
 }

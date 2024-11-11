@@ -1,0 +1,11 @@
+@import url("./PermissionMenu/_index.css");
+
+.permission-manager {
+	.window-content {
+		padding: 0;
+	}
+	.window-resize-handle {
+		width: 16px;
+		height: 16px;
+	}
+}

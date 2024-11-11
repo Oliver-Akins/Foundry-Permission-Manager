@@ -1,0 +1,34 @@
+<div class="permission-table grid scollable">
+	<p class="permission-disclaimer">
+		Disclaimer: It is upon the module programmer's to use the permissions
+		that they set up. If they do not use their own permissions, then
+		there is nothing that the Permission Manager can do about it.
+	</p>
+
+	<div class="permission-header">
+		<span>Permission</span>
+		<span>User</span>
+		<span>Trusted</span>
+		<span>Assistant</span>
+		<span>Gamemaster</span>
+	</div>
+
+	<ul class="permission-list">
+		{{#each perms}}
+		<li>
+			<span>{{this.name}}</span>
+			{{#each this.perms as | perm |}}
+				<input
+					type="checkbox"
+					name="{{perm.name}}"
+					{{checked perm.checked}}
+					readonly="{{perm.readonly}}"
+				>
+			{{/each}}
+			{{#if this.hint}}
+				<p class="description">{{this.hint}}</p>
+			{{/if}}
+		</li>
+		{{/each}}
+	</ul>
+</div>

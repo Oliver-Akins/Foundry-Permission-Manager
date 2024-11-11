@@ -9,6 +9,12 @@ export const CustomPermissionSchema = new fields.SchemaField({
 		blank: false,
 		trim: true,
 	}),
+	gm: new fields.StringField({
+		required: false,
+		initial: null,
+		nullable: true,
+		options: ["always", "never"],
+	}),
 	default: PermissionModel,
 	name: new fields.StringField({
 		required: false,

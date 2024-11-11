@@ -1,0 +1,9 @@
+{
+	"PM": {
+		"Application": {
+			"PermissionMenu": {
+				"title": "Custom Permission Configuration"
+			}
+		}
+	}
+}
