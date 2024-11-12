@@ -37,6 +37,15 @@
 		"hotReload": {
 			"extensions": ["css", "hbs", "json", "js", "mjs", "svg"],
 			"paths": ["templates", "langs", "styles", "src", "assets"]
+		},
+		"permission-manager": {
+			"customPermissions": [
+				{
+					"id": "canEditPermissions",
+					"gm": "always",
+					"default": [4]
+				}
+			]
 		}
 	}
 }
