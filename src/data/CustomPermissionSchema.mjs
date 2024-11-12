@@ -28,4 +28,9 @@ export const CustomPermissionSchema = new fields.SchemaField({
 		blank: false,
 		trim: true,
 	}),
+	requiresReload: new fields.BooleanField({
+		required: false,
+		nullable: false,
+		initial: false,
+	}),
 });

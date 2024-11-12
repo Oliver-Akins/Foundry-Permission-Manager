@@ -1,5 +1,4 @@
 import { CustomPermissionSchema } from "../data/CustomPermissionSchema.mjs";
-import { PermissionModel } from "../data/PermissionModel.mjs";
 const fields = foundry.data.fields;
 
 export class PermissionManager {
@@ -36,8 +35,9 @@ export class PermissionManager {
 			qualifiedPermission,
 			{
 				config: false,
-				requiresReload: false,
-				type: PermissionModel,
+				scope: `world`, // I set this to world and suddenly it's not working any more?
+				requiresReload: permissionData.requiresReload,
+				type: Set,
 				default: permissionData.default ?? [CONST.USER_ROLES.GAMEMASTER],
 			}
 		);
@@ -53,9 +53,9 @@ export class PermissionManager {
 	 * @returns The list of roles with that permission
 	 */
 	static #getRoles(qualifiedPermission) {
-		if (this.#permissionCache.has(qualifiedPermission)) {
-			return this.#permissionCache.get(qualifiedPermission);
-		};
+		// if (this.#permissionCache.has(qualifiedPermission)) {
+		// 	return this.#permissionCache.get(qualifiedPermission);
+		// };
 		const roles = game.settings.get(`permission-manager`, qualifiedPermission);
 		this.#permissionCache.set(qualifiedPermission, roles);
 		return roles;
@@ -70,39 +70,64 @@ export class PermissionManager {
 	 * @returns Whether or not the
 	 */
 	static can(scope, permission, user = undefined) {
-		const qualifiedPermission = this.qualifyPermission(scope, permission);
-		if (!this.#validPermissions.has(qualifiedPermission)) {
+		const qualified = this.qualifyPermission(scope, permission);
+		if (!this.#validPermissions.has(qualified)) {
 			return false;
 		};
 
 		const role = user?.role ?? game.user.role;
-		const perms = this.#getRoles(qualifiedPermission);
+		/** @type {CustomPermission} */
+		const permData = this.#validPermissions.get(qualified);
+		const perms = this.#getRoles(qualified);
+
+		if (permData.gm !== null && role === CONST.USER_ROLES.GAMEMASTER) {
+			return permData.gm === "always";
+		};
 
 		return perms ? perms.includes(role) : false;
 	};
 
-	// Completely overwrites the permission roles
-	static overwrite(scope, permission, roles = []) {
-		const qualifiedPermission = this.qualifyPermission(scope, permission);
-		if (!this.#validPermissions.has(qualifiedPermission)) {
+	static overwrite(qualified, roles) {
+		if (!this.#validPermissions.has(qualified)) {
 			return;
 		};
-		game.settings.set(`permission-manager`, qualifiedPermission, roles);
-		this.#permissionCache.delete(qualifiedPermission);
+		/** @type {Set<1 | 2 | 3 |4>} */
+		const currentRoles = this.#getRoles(qualified);
+
+		/** @type {Set<1 | 2 | 3 |4>} */
+		const changed = currentRoles.symmetricDifference(new Set(roles));
+		if (changed.size === 0) {
+			console.log(`Ignoring update for: ${qualified}`)
+			return;
+		}
+
+		console.log(`overwriting perm: ${qualified}`)
+		game.settings.set(`permission-manager`, qualified, roles);
+		this.#permissionCache.delete(qualified);
+	};
+
+	// Completely overwrites the permission roles
+	static overwriteUnqualified(scope, permission, roles) {
+		const qualifiedPermission = this.qualifyPermission(scope, permission);
+		this.overwrite(qualifiedPermission, roles)
+	};
+
+	static allow(qualified, role) {
+		if (!this.#validPermissions.has(qualified)) {
+			return;
+		};
+
+		const perms = this.#getRoles(qualified);
+		if (perms.includes(role)) return;
+		perms.push(role);
+		game.settings.set(`permission-manager`, qualified, perms);
+		this.#permissionCache.delete(qualified);
 	};
 
 	// Allows a new role to access a permission
-	static allow(scope, permission, role) {
+	static allowUnqualified(scope, permission, role) {
 		const qualifiedPermission = this.qualifyPermission(scope, permission);
-		if (!this.#validPermissions.has(qualifiedPermission)) {
-			return;
-		};
-
-		const perms = this.#getRoles(qualifiedPermission);
-		if (perms.includes(role)) return;
-		perms.push(role);
-		game.settings.set(`permission-manager`, qualifiedPermission, perms);
-		this.#permissionCache.delete(qualifiedPermission);
+		this.allow(qualifiedPermission, role);
 	};
 
 	// Removes a specific role from being able to access a permission
@@ -119,15 +144,32 @@ export class PermissionManager {
 
 	/** Turns a scope and permission, into a fully qualified permission */
 	static qualifyPermission(scope, permission) {
-		return `PM.${scope}.${permission}`;
+		return `${scope}.${permission}`;
+	};
+
+	static unqualifyPermission(qualified) {
+		const [ scope, permission ] = qualified.split(`.`, 1);
+		return { scope, permission };
+	};
+
+	static get scopes() {
+		const scopes = new Set();
+		for (const qualified of this.#validPermissions.keys()) {
+			const { scope, } = this.unqualifyPermission(qualified);
+			scopes.add(scope);
+		};
+		return [...scopes];
 	};
 
 	static get permissions() {
 		const perms = [];
 		for (const [ permission, data ] of this.#validPermissions.entries()) {
 			perms.push({
-				...data,
+				id: data.id,
 				key: permission,
+				name: data.name,
+				hint: data.hint,
+				gm: data.gm,
 				roles: this.#getRoles(permission),
 			});
 		};

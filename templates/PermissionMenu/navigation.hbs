@@ -1,0 +1,20 @@
+<nav>
+	<button
+		type="button"
+		data-action="filter"
+		data-group="perms"
+		data-scope=""
+	>
+		All
+	</button>
+	{{#each scopes as | scope | }}
+		<button
+			data-action="filter"
+			data-group="perms"
+			data-scope="{{scope.id}}"
+			type="button"
+		>
+			{{scope.name}}
+		</button>
+	{{/each}}
+</nav>

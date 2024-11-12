@@ -1,6 +1,6 @@
-<div class="permission-table grid scollable">
+<div class="permission-table grid">
 	<p class="permission-disclaimer">
-		Disclaimer: It is upon the module programmer's to use the permissions
+		Disclaimer: It is upon a module's programmers to use the permissions
 		that they set up. If they do not use their own permissions, then
 		there is nothing that the Permission Manager can do about it.
 	</p>
@@ -15,20 +15,30 @@
 
 	<ul class="permission-list">
 		{{#each perms}}
-		<li>
-			<span>{{this.name}}</span>
-			{{#each this.perms as | perm |}}
-				<input
-					type="checkbox"
-					name="{{perm.name}}"
-					{{checked perm.checked}}
-					readonly="{{perm.readonly}}"
+			{{#if this.visible}}
+				<li
+					class="permission"
+					data-group="perms"
+					data-tab="{{this.scope}}"
 				>
-			{{/each}}
-			{{#if this.hint}}
-				<p class="description">{{this.hint}}</p>
+					<span>{{this.name}}</span>
+					{{#each this.perms as | perm |}}
+						<input
+							type="checkbox"
+							name="{{perm.name}}"
+							{{checked perm.checked}}
+							{{#if perm.readonly}}readonly{{/if}}
+						>
+					{{/each}}
+					{{#if this.hint}}
+						<p class="description">{{this.hint}}</p>
+					{{/if}}
+				</li>
 			{{/if}}
-		</li>
+		{{else}}
+			<p class="description">
+				No permissions have been registered
+			</p>
 		{{/each}}
 	</ul>
 </div>
