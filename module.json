@@ -43,6 +43,8 @@
 				{
 					"id": "canEditPermissions",
 					"gm": "always",
+					"name": "PM.Permission.canEditPermissions.name",
+					"hint": "PM.Permission.canEditPermissions.hint",
 					"default": [4]
 				}
 			]

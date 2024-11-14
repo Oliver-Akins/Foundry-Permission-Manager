@@ -15,28 +15,26 @@
 
 	<ul class="permission-list">
 		{{#each perms}}
-			{{#if this.visible}}
-				<li
-					class="permission"
-					data-group="perms"
-					data-tab="{{this.scope}}"
-				>
-					<span>{{this.name}}</span>
-					{{#each this.perms as | perm |}}
-						<input
-							type="checkbox"
-							name="{{perm.name}}"
-							{{checked perm.checked}}
-							{{#if perm.readonly}}readonly{{/if}}
-						>
-					{{/each}}
-					{{#if this.hint}}
-						<p class="description">{{this.hint}}</p>
-					{{/if}}
-				</li>
-			{{/if}}
+			<li
+				class="permission filterable {{#if this.visible}}visible{{/if}}"
+				data-group="perms"
+				data-scope="{{this.scope}}"
+			>
+				<span class="index">{{this.name}}</span>
+				{{#each this.perms as | perm |}}
+					<input
+						type="checkbox"
+						name="{{perm.name}}"
+						{{checked perm.checked}}
+						{{#if perm.readonly}}readonly{{/if}}
+					>
+				{{/each}}
+				{{#if this.hint}}
+					<p class="description">{{this.hint}}</p>
+				{{/if}}
+			</li>
 		{{else}}
-			<p class="description">
+			<p class="description hint">
 				No permissions have been registered
 			</p>
 		{{/each}}

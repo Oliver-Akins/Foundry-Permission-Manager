@@ -128,9 +128,23 @@ export class PermissionMenu extends api.HandlebarsApplicationMixin(api.Applicati
 	};
 
 	static async #onFilter(_event, element) {
-		const data = element.dataset;
-		this.filterGroups[data.group] = data.scope;
-		this.render(); // This makes it work, but resets any unsaved changes
+		const { group, scope, } = element.dataset;
+		this.filterGroups[group] = scope;
+
+		const filterableElements = this.element.querySelectorAll(`.filterable[data-group="${group}"]`);
+		for (const el of filterableElements) {
+			if (scope === "") {
+				el.classList.add(`visible`);
+				continue;
+			}
+			const isScope = scope === el.dataset.scope;
+			if (el.classList.contains(`visible`) && !isScope) {
+				el.classList.remove(`visible`);
+			}
+			else if (isScope) {
+				el.classList.add(`visible`);
+			};
+		};
 	};
 };
 

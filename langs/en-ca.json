@@ -4,6 +4,12 @@
 			"PermissionMenu": {
 				"title": "Custom Permission Configuration"
 			}
+		},
+		"Permission": {
+			"canEditPermissions": {
+				"name": "Configure Custom Permissions",
+				"hint": "Allows users to configure the custom permission levels, including for roles that they don't have."
+			}
 		}
 	}
 }
