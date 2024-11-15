@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/pico.jade.min.css" />
+	<link rel="stylesheet" href="css/highlight.material-vivid.min.css" />
+	<script src="./js/highlight.min.js"></script>
+	<script>hljs.highlightAll();</script>
+	<title>Getting Started - Custom Permission Lib</title>
+</head>
+<body>
+	<nav class="container-fluid">
+		<ul>
+			<li>Custom Permission Lib</li>
+		</ul>
+		<ul>
+			<li><a href="./">Home</a></li>
+			<li>
+				<details class="dropdown">
+					<summary>Docs</summary>
+					<ul dir="rtl">
+						<li><a href="getting-started.html">Getting Started</a></li>
+						<li><a href="types.html">Types</a></li>
+					</ul>
+				</details>
+			</li>
+		</ul>
+	</nav>
+	<main class="container">
+		<h1>Getting Started</h1>
+		<p>
+			In order to get started using Custom Permission Lib you must do the following:
+		</p>
+		<aside>
+			Have your module/system initialized before following these steps, if you
+			want help with this, please check the Foundry knowledgebase, documentation,
+			and/or Discord server. This guide will not be going over that.
+		</aside>
+		<ol>
+			<li>
+				<p>
+					<b>Define the dependency</b>.
+					In your <code>module.json</code>, add the package into your
+					relationships
+				</p>
+				<pre><code class="language-json theme-base16-gruvbox-dark-soft">{
+	"id": "permission-manager",
+	"type": "module",
+	"compatibility": {
+		"verified": "1.0.0"
+	}
+}</code></pre>
+			</li>
+		</ol>
+	</main>
+</body>
+</html>
