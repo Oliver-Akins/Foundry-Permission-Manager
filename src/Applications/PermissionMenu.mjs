@@ -97,7 +97,7 @@ export class PermissionMenu extends api.HandlebarsApplicationMixin(api.Applicati
 			ctx.perms.push({
 				key: perm.key,
 				scope,
-				name: game.i18n.localize(perm.name ?? perm.key),
+				name: game.i18n.localize(perm.name ?? `PM.${perm.key}`),
 				hint: game.i18n.localize(perm.hint),
 				perms: rolePerms,
 				visible: [scope, ""].includes(this.filterGroups.perms),

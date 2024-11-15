@@ -53,8 +53,8 @@
 		z-index: 1;
 		padding: 4px 8px;
 
-		:not(:first-child) {
-			justify-self: center;
+		> :not(:first-child) {
+			text-align: center;
 		}
 	}
 
