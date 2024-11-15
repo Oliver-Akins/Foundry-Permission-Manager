@@ -52,6 +52,7 @@
 		background: var(--background);
 		z-index: 1;
 		padding: 4px 8px;
+		align-items: center;
 
 		> :not(:first-child) {
 			text-align: center;
