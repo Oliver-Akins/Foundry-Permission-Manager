@@ -1,0 +1,37 @@
+name: Bug Report
+description: File a bug report.
+title: "[Bug]: "
+labels: ["Bug", "Triage"]
+assignees:
+  - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please make sure
+        to fill out everything in this form to help your bug get fixed as soon
+        as possible.
+  - type: textarea
+    attributes:
+      label: What's happening?
+      description: Describe what is happening.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What should be happening?
+      description: Describe what you think should be happening
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Foundry Debug Info
+      description: |
+        In your Foundry website, go to the "Game Settings" sidebar tab, click
+        the "Support & Issues" button, it will open a new window in Foundry, at
+        the bottom of it, click "Generate Full Report", and then "Copy Report to
+        Clipboard", paste the entire report details into this box
+      placeholder: "Foundry Virtual Tabletop: Version ..."
+      render: plaintext
+    validations:
+      required: true
