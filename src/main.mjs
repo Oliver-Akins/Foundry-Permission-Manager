@@ -4,8 +4,12 @@ import "./Applications/PermissionMenu.mjs";
 import "./hooks/hotReload.mjs";
 
 Hooks.once(`init`, () => {
-	// TODO: allow not registering the permission menu based on a flag in the world manifest
-	// game.settings.registerMenu(`permission-manager`, ``);
+	game.settings.registerMenu(`permission-manager`, `custom-permissions`, {
+		name: `Custom Permissions`,
+		label: `Configure Custom Permissions`,
+		type: PermissionMenu,
+		restricted: true,
+	});
 	Handlebars.registerHelper(helpers);
 });
 
