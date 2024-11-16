@@ -44,13 +44,28 @@
 					In your <code>module.json</code>, add the package into your
 					relationships
 				</p>
-				<pre><code class="language-json theme-base16-gruvbox-dark-soft">{
+				<pre><code class="language-json">{
 	"id": "permission-manager",
 	"type": "module",
 	"compatibility": {
 		"verified": "1.0.0"
 	}
 }</code></pre>
+			</li>
+			<li>
+				<p>
+					In your <code>module.json</code>, in the <code>"flags"</code>
+					add the following data to the object
+				</p>
+				<pre><code class="language-json">"permission-manager": {
+	"customPermissions": []
+}</code></pre>
+			</li>
+			<li>
+				<p>
+					Add all of your custom permissions that you want, each permission object
+					must match the <a href="">CustomPermission type</a>
+				</p>
 			</li>
 		</ol>
 	</main>

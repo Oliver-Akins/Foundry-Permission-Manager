@@ -27,8 +27,94 @@
 			</li>
 		</ul>
 	</nav>
+	<aside>
+		<nav class="container">
+			<ul>
+				<li><a href="#CustomPermission">CustomPermission</a></li>
+				<li><a href="#PermissionModel">PermissionModel</a></li>
+			</ul>
+		</nav>
+	</aside>
 	<main class="container">
 		<h1>Types</h1>
+
+		<h2>CustomPermission</h2>
+		<p>
+			This type is the data that represents a custom permission defined within
+			a <code>module.json</code> file.
+		</p>
+		<p>
+			A question mark after the property name indicates that the field is
+		</p>
+		<table>
+			<thead>
+				<tr>
+					<td>Property</td>
+					<td>Type</td>
+					<td>Default</td>
+					<td>Description</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>id</code></td>
+					<td>String</td>
+					<td>N/A</td>
+					<td>
+						<p>
+							The unique identifier of the permission, this is used in your code
+							as well to be able to check if a user has the permission or not
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><code>gm</code>?</td>
+					<td><code>"never" | null | "always"</code></td>
+					<td><code>null</code></td>
+					<td>
+						Whether the Game Master is able to always, or never, have
+						this permission, or if it can be configured by them. This
+						will prevent the Game Master permission from being
+						able to changed in the permission management form, and it
+						will ignore any changes made to the stored data as a whole.
+					</td>
+				</tr>
+				<tr>
+					<td><code>default</code>?</td>
+					<td><a href="">PermissionModel</a></td>
+					<td><code>[ 4 ]</code></td>
+					<td>
+						<p>
+							The permissions to assign this permission when it's first created.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><code>name</code>?</td>
+					<td>String</td>
+					<td><code>module-name.permission-id</code></td>
+					<td>
+						<p>
+							The user-friendly permission name that will appear in the
+							permission configuration. This can either be the
+							description itself, or a localization key.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><code>hint</code>?</td>
+					<td>String</td>
+					<td>N/A</td>
+					<td>
+						<p>
+							The user-friendly description that will appear in the
+							permission configuration. This can either be the
+							description itself, or a localization key.
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</main>
 </body>
 </html>
