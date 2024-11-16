@@ -176,4 +176,7 @@ export class PermissionManager {
 	}
 };
 
-globalThis.PermissionManager = PermissionManager;
+Object.defineProperty(globalThis, `PermissionManager`, {
+	value: Object.freeze(PermissionManager),
+	writable: false,
+});
