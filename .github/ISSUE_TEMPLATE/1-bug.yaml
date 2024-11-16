@@ -27,10 +27,10 @@ body:
     attributes:
       label: Foundry Debug Info
       description: |
-        In your Foundry website, go to the "Game Settings" sidebar tab, click
-        the "Support & Issues" button, it will open a new window in Foundry, at
-        the bottom of it, click "Generate Full Report", and then "Copy Report to
-        Clipboard", paste the entire report details into this box
+        In Foundry, go to the "Game Settings" sidebar tab, click the "Support &
+        Issues" button, it will open a new window in Foundry, at the bottom of
+        it, click "Generate Full Report", and then "Copy Report to Clipboard",
+        paste the entire report details into this box.
       placeholder: "Foundry Virtual Tabletop: Version ..."
       render: plaintext
     validations:
