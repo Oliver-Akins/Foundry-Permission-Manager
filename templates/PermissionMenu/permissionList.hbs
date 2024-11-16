@@ -18,7 +18,7 @@
 				data-group="perms"
 				data-scope="{{this.scope}}"
 			>
-				<span class="index">{{this.name}}</span>
+				<span class="id">{{this.name}}</span>
 				{{#each this.perms as | perm |}}
 					<input
 						type="checkbox"
@@ -28,11 +28,11 @@
 					>
 				{{/each}}
 				{{#if this.hint}}
-					<p class="description">{{this.hint}}</p>
+					<p class="hint">{{this.hint}}</p>
 				{{/if}}
 			</li>
 		{{else}}
-			<p class="description hint">
+			<p class="hint">
 				No permissions have been registered
 			</p>
 		{{/each}}

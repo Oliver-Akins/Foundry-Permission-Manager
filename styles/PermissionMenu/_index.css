@@ -74,7 +74,7 @@
 			grid-template-rows: min-content min-content;
 			align-items: center;
 
-			:not(:first-child) {
+			> :not(:is(span, p)) {
 				justify-self: center;
 			}
 
@@ -82,14 +82,17 @@
 				display: grid;
 			}
 
-			.hint {
+			> .id {
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			> .hint {
 				grid-column: 1 / -1;
+				font-size: var(--font-size-14);
+				color: var(--color-form-hint);
 			}
 		}
-	}
-
-	input[type="checkbox"] {
-		border: white;
 	}
 
 	footer {
