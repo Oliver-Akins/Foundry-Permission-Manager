@@ -39,10 +39,10 @@ jobs:
 
       - name: Update the download property in the manifest
         id: manifest-update
-        run: cat module.temp.json | jq -r --tab '.download = "https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version }}/${{ vars.zip_name }}.zip"' > module.json
+        run: cat module.temp.json | jq -r --tab '.download = "https://github.com/${{ github.repository }}/releases/download/v${{ steps.version.outputs.version }}/release.zip"' > module.json
 
       - name: Create the zip
-        run: zip -r ${{ vars.zip_name || 'release' }}.zip ${{ vars.files_to_release }}
+        run: zip -r release.zip ${{ vars.files_to_release }}
 
       - name: Create the draft release
         uses: ncipollo/release-action@v1
@@ -51,4 +51,4 @@ jobs:
           commit: ${{ github.ref }}
           draft: true
           generateReleaseNotes: true
-          artifacts: "${{vars.zip_name || 'release'}}.zip,module.json"
+          artifacts: "release.zip,module.json"
