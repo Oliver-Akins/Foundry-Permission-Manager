@@ -1,5 +1,4 @@
 import { CustomPermissionSchema } from "../data/CustomPermissionSchema.mjs";
-const fields = foundry.data.fields;
 
 export class PermissionManager {
 	/** @type {Map<string, CustomPermission>} */

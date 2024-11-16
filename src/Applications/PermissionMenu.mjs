@@ -3,6 +3,15 @@ import { filePath } from "../consts.mjs";
 const { api, } = foundry.applications;
 
 export class PermissionMenu extends api.HandlebarsApplicationMixin(api.ApplicationV2) {
+
+	constructor(...args) {
+		if (!game.user.isGM) {
+			console.warn(`You do not have permission to edit the custom permissions`);
+			return;
+		};
+		super(...args);
+	};
+
 	static DEFAULT_OPTIONS = {
 		classes: [
 			`permission-manager`,

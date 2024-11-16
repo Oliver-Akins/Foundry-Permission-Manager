@@ -27,11 +27,11 @@
 			"path": "langs/en-ca.json"
 		}
 	],
-	"url": "",
-	"manifest": "",
-	"download": "",
+	"url": "https://github.com/Oliver-Akins/Foundry-Permission-Manager",
+	"manifest": "https://github.com/Oliver-Akins/Foundry-Permission-Manager/releases/latest/download/module.json",
+	"download": "https://github.com/Oliver-Akins/Foundry-Permission-Manager/releases/latest/download/release.zip",
 	"readme": "README.md",
-	"bugs": "",
+	"bugs": "https://github.com/Oliver-Akins/Foundry-Permission-Manager/issues/new?labels=Bug%2CTriage&template=1-bug.yaml&title=%5BBug%5D%3A+",
 	"library": true,
 	"flags": {
 		"hotReload": {
@@ -39,15 +39,7 @@
 			"paths": ["templates", "langs", "styles", "src", "assets"]
 		},
 		"permission-manager": {
-			"customPermissions": [
-				{
-					"id": "canEditPermissions",
-					"gm": "always",
-					"name": "PM.Permission.canEditPermissions.name",
-					"hint": "PM.Permission.canEditPermissions.hint",
-					"default": [4]
-				}
-			]
+			"customPermissions": []
 		}
 	}
 }

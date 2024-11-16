@@ -24,8 +24,3 @@ Hooks.once(`setup`, () => {
 		module.flags["permission-manager"]?.customPermissions?.forEach(p => PermissionManager.register(module.id, p))
 	};
 });
-
-Hooks.once(`ready`, () => {
-	let p = new PermissionMenu({ position: { left: 150 } });
-	p.render(true);
-});
