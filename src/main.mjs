@@ -1,3 +1,4 @@
+import { PermissionMenu } from "./Applications/PermissionMenu.mjs";
 import { PermissionManager } from "./utils/PermissionManager.mjs";
 import helpers from "./utils/handlebars_helpers/_index.mjs";
 import "./Applications/PermissionMenu.mjs";

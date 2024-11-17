@@ -156,5 +156,3 @@ export class PermissionMenu extends api.HandlebarsApplicationMixin(api.Applicati
 		};
 	};
 };
-
-globalThis.PermissionMenu = PermissionMenu;
