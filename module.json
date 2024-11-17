@@ -2,7 +2,7 @@
 	"id": "permission-manager",
 	"title": "Custom Permission Lib",
 	"description": "A module that provides a way for custom permissions similar to Foundry's default permission system.",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"compatibility": {
 		"minimum": 12,
 		"verified": 12,
