@@ -83,7 +83,7 @@ export class PermissionManager {
 			return permData.gm === "always";
 		};
 
-		return perms ? perms.includes(role) : false;
+		return perms ? perms.has(role) : false;
 	};
 
 	static overwrite(qualified, roles) {
