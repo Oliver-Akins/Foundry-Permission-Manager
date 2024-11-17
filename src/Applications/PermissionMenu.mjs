@@ -91,7 +91,7 @@ export class PermissionMenu extends api.HandlebarsApplicationMixin(api.Applicati
 
 				let checked = perm.roles.has(role);
 				if (perm.gm != null && role === gmRole) {
-					checked &&= perm.gm === "always"
+					checked ||= perm.gm === "always"
 				};
 
 				rolePerms.push({
